@@ -9,6 +9,10 @@ export interface TypeVoice {
   echoCancellation: boolean;
   noiseSupression: boolean;
 
+  noiseGateEnabled: boolean;
+  noiseGateThreshold: number;
+  noiseGateHysteresis: number;
+
   inputVolume: number;
   outputVolume: number;
 
@@ -42,6 +46,9 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
     return {
       echoCancellation: true,
       noiseSupression: true,
+      noiseGateEnabled: false,
+      noiseGateThreshold: -50,
+      noiseGateHysteresis: 10,
       inputVolume: 1.0,
       outputVolume: 1.0,
       userVolumes: {},
@@ -69,6 +76,18 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
 
     if (typeof input.noiseSupression === "boolean") {
       data.noiseSupression = input.noiseSupression;
+    }
+
+    if (typeof input.noiseGateEnabled === "boolean") {
+      data.noiseGateEnabled = input.noiseGateEnabled;
+    }
+
+    if (typeof input.noiseGateThreshold === "number") {
+      data.noiseGateThreshold = input.noiseGateThreshold;
+    }
+
+    if (typeof input.noiseGateHysteresis === "number") {
+      data.noiseGateHysteresis = Math.max(5, input.noiseGateHysteresis);
     }
 
     if (typeof input.inputVolume === "number") {
@@ -164,6 +183,27 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
   }
 
   /**
+   * Set noise gate enabled
+   */
+  set noiseGateEnabled(value: boolean) {
+    this.set("noiseGateEnabled", value);
+  }
+
+  /**
+   * Set noise gate threshold
+   */
+  set noiseGateThreshold(value: number) {
+    this.set("noiseGateThreshold", value);
+  }
+
+  /**
+   * Set noise gate hysteresis offset
+   */
+  set noiseGateHysteresis(value: number) {
+    this.set("noiseGateHysteresis", value);
+  }
+
+  /**
    * Set input volume
    */
   set inputVolume(value: number) {
@@ -203,6 +243,27 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
    */
   get noiseSupression(): boolean | undefined {
     return this.get().noiseSupression;
+  }
+
+  /**
+   * Get noise gate enabled
+   */
+  get noiseGateEnabled(): boolean {
+    return this.get().noiseGateEnabled;
+  }
+
+  /**
+   * Get noise gate threshold
+   */
+  get noiseGateThreshold(): number {
+    return this.get().noiseGateThreshold;
+  }
+
+  /**
+   * Get noise gate hysteresis offset
+   */
+  get noiseGateHysteresis(): number {
+    return this.get().noiseGateHysteresis;
   }
 
   /**

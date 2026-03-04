@@ -1,6 +1,7 @@
 import { Column } from "@revolt/ui";
 
 import { VoiceInputOptions } from "./VoiceInputOptions";
+import { VoiceNoiseGateOptions } from "./VoiceNoiseGateOptions";
 import { VoiceProcessingOptions } from "./VoiceProcessingOptions";
 
 /**
@@ -11,6 +12,7 @@ export function VoiceSettings() {
     <Column gap="lg">
       <VoiceInputOptions />
       <VoiceProcessingOptions />
+      <VoiceNoiseGateOptions />
     </Column>
   );
 }

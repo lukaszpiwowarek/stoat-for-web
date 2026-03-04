@@ -9,7 +9,7 @@ import {
 } from "solid-js";
 import { RoomContext } from "solid-livekit-components";
 
-import { Room } from "livekit-client";
+import { LocalAudioTrack, Room } from "livekit-client";
 import { Channel } from "stoat.js";
 
 import { useState } from "@revolt/state";
@@ -18,6 +18,7 @@ import { VoiceCallCardContext } from "@revolt/ui/components/features/voice/callC
 
 import { InRoom } from "./components/InRoom";
 import { RoomAudioManager } from "./components/RoomAudioManager";
+import { NoiseGateProcessor } from "./NoiseGateProcessor";
 
 type State =
   | "READY"
@@ -28,6 +29,7 @@ type State =
 
 class Voice {
   #settings: VoiceSettings;
+  #noiseGate: NoiseGateProcessor;
 
   channel: Accessor<Channel | undefined>;
   #setChannel: Setter<Channel | undefined>;
@@ -52,6 +54,13 @@ class Voice {
 
   constructor(voiceSettings: VoiceSettings) {
     this.#settings = voiceSettings;
+    this.#noiseGate = new NoiseGateProcessor(
+      {
+        threshold: this.#settings.noiseGateThreshold,
+        hysteresisDb: this.#settings.noiseGateHysteresis,
+      },
+      !this.#settings.noiseGateEnabled,
+    );
 
     const [channel, setChannel] = createSignal<Channel>();
     this.channel = channel;
@@ -109,7 +118,10 @@ class Voice {
       if (this.speakingPermission)
         room.localParticipant
           .setMicrophoneEnabled(true)
-          .then((track) => this.#setMicrophone(typeof track !== "undefined"));
+          .then((pub) => {
+            this.#setMicrophone(typeof pub !== "undefined");
+            if (pub?.track) (pub.track as LocalAudioTrack).setProcessor(this.#noiseGate);
+          });
     });
 
     room.addListener("connected", () => this.#setState("CONNECTED"));
@@ -171,6 +183,21 @@ class Voice {
     );
 
     this.#setScreenshare(room.localParticipant.isScreenShareEnabled);
+  }
+
+  setNoiseGateEnabled(value: boolean) {
+    this.#settings.noiseGateEnabled = value;
+    this.#noiseGate.setBypassed(!value);
+  }
+
+  setNoiseGateThreshold(db: number) {
+    this.#settings.noiseGateThreshold = db;
+    this.#noiseGate.setThreshold(db);
+  }
+
+  setNoiseGateHysteresis(db: number) {
+    this.#settings.noiseGateHysteresis = db;
+    this.#noiseGate.setHysteresis(db);
   }
 
   getConnectedUser(userId: string) {
