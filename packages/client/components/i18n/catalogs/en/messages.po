@@ -1185,6 +1185,10 @@ msgstr "Enable authenticator app"
 msgid "Enable Desktop Notifications"
 msgstr "Enable Desktop Notifications"
 
+#: components/app/interface/settings/user/voice/VoiceNoiseGateOptions.tsx
+msgid "Enable Noise Gate"
+msgstr "Enable Noise Gate"
+
 #: components/app/interface/settings/user/appearance/AppearanceMenu.tsx
 msgid "Enable transparency glass/blur effects (slow on older machines)"
 msgstr "Enable transparency glass/blur effects (slow on older machines)"
@@ -1400,6 +1404,10 @@ msgstr "High Contrast"
 #: src/interface/navigation/channels/HomeSidebar.tsx
 msgid "Home"
 msgstr "Home"
+
+#: components/app/interface/settings/user/voice/VoiceNoiseGateOptions.tsx
+msgid "Hysteresis"
+msgstr "Hysteresis"
 
 #: src/interface/channels/AgeGate.tsx
 msgid "I confirm that I am at least 18 years old."
@@ -1883,6 +1891,10 @@ msgstr "No permissions set yet"
 #: src/interface/Friends.tsx
 msgid "Nobody here right now!"
 msgstr "Nobody here right now!"
+
+#: components/app/interface/settings/user/voice/VoiceNoiseGateOptions.tsx
+msgid "Noise Gate"
+msgstr "Noise Gate"
 
 #: components/app/menus/ServerContextMenu.tsx
 #: components/app/menus/shared/NotificationContextMenu.tsx
@@ -2722,6 +2734,10 @@ msgstr "This username is not allowed."
 #: components/modal/modals/ResetBotToken.tsx
 msgid "This will invalidate the current token and stop any existing instances of the bot from running."
 msgstr "This will invalidate the current token and stop any existing instances of the bot from running."
+
+#: components/app/interface/settings/user/voice/VoiceNoiseGateOptions.tsx
+msgid "Threshold"
+msgstr "Threshold"
 
 #: components/app/interface/settings/channel/permissions/ChannelPermissionsEditor.tsx
 msgid "Timeout Members"

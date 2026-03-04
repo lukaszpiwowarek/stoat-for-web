@@ -1185,6 +1185,10 @@ msgstr "অথেনটিকেটর অ্যাপ চালু করুন
 msgid "Enable Desktop Notifications"
 msgstr "ডেস্কটপ নোটিফিকেশন চালু করুন-"
 
+#: components/app/interface/settings/user/voice/VoiceNoiseGateOptions.tsx
+msgid "Enable Noise Gate"
+msgstr ""
+
 #: components/app/interface/settings/user/appearance/AppearanceMenu.tsx
 msgid "Enable transparency glass/blur effects (slow on older machines)"
 msgstr ""
@@ -1400,6 +1404,10 @@ msgstr ""
 #: src/interface/navigation/channels/HomeSidebar.tsx
 msgid "Home"
 msgstr "বাড়ি"
+
+#: components/app/interface/settings/user/voice/VoiceNoiseGateOptions.tsx
+msgid "Hysteresis"
+msgstr ""
 
 #: src/interface/channels/AgeGate.tsx
 msgid "I confirm that I am at least 18 years old."
@@ -1882,6 +1890,10 @@ msgstr ""
 
 #: src/interface/Friends.tsx
 msgid "Nobody here right now!"
+msgstr ""
+
+#: components/app/interface/settings/user/voice/VoiceNoiseGateOptions.tsx
+msgid "Noise Gate"
 msgstr ""
 
 #: components/app/menus/ServerContextMenu.tsx
@@ -2721,6 +2733,10 @@ msgstr ""
 
 #: components/modal/modals/ResetBotToken.tsx
 msgid "This will invalidate the current token and stop any existing instances of the bot from running."
+msgstr ""
+
+#: components/app/interface/settings/user/voice/VoiceNoiseGateOptions.tsx
+msgid "Threshold"
 msgstr ""
 
 #: components/app/interface/settings/channel/permissions/ChannelPermissionsEditor.tsx
